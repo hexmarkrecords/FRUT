@@ -26,10 +26,40 @@
 #include <tuple>
 #include <vector>
 
+/*
+  ==============================================================================
+
+   Utility to turn a bunch of binary files into a .cpp file and .h file full of
+   data, so they can be built directly into an executable.
+
+   It also allows for content to be encrypted by placing an .encrypt-me file
+   that includes the secret cipher text so that this binary builder can
+   perform encryption:
+
+    root
+    ├── anotherDir
+    │   ├── .encrypt-me
+    │   ├── anotherMessage.txt
+    │   └── deepDir
+    │       └── deepText.txt
+    └── message.txt
+
+
+   In the example above anotherMessage.txt and deepText.txt would both be
+   encrypted using the cipher text found within the .encrypt-me file.
+   Furthermore, message.txt would remain unencrypted.
+
+   Use this code at your own risk! It carries no warranty!
+
+  ==============================================================================
+*/
+
+
+//==============================================================================
 
 int main(int argc, char* argv[])
 {
-  if (argc < 5)
+  if (argc < 6)
   {
     std::cerr << "usage: BinaryDataBuilder"
               << " <Projucer-version>"
@@ -37,6 +67,7 @@ int main(int argc, char* argv[])
               << " <Project-UID>"
               << " <BinaryData.cpp-size-limit>"
               << " <BinaryData-namespace>"
+              << " <Project-list-dir>"
               << " <resource-files>..." << std::endl;
     return 1;
   }
@@ -71,7 +102,13 @@ int main(int argc, char* argv[])
     }
   }();
 
-  Project project{args.at(2), args.at(3)};
+
+  // Here we record the project root
+  // useful for a sensible stop for the recursive
+  // hunt for any .encrypt-me files in the directory
+  // ancestry.
+
+  Project project{args.at(6), args.at(2), args.at(3)};
 
   const auto maxSize = [&args]() {
     try
@@ -88,7 +125,7 @@ int main(int argc, char* argv[])
   ResourceFile resourceFile{project};
   resourceFile.setClassName(args.at(5));
 
-  for (auto i = 6u; i < args.size(); ++i)
+  for (auto i = 7u; i < args.size(); ++i)
   {
     resourceFile.addFile(File{args.at(i)});
   }

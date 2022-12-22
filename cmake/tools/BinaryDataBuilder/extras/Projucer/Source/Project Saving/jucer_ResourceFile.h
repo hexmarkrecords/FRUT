@@ -75,6 +75,8 @@ public:
     Result write (Array<File>& filesCreated, int maxFileSize);
 
     //==============================================================================
+
+
 private:
     Array<File> files;
     StringArray variableNames;
@@ -85,6 +87,28 @@ private:
     Result writeHeader (MemoryOutputStream&);
     template <ProjucerVersion>
     Result writeCpp (MemoryOutputStream&, const File& headerFile, int& index, int maxFileSize);
+
+
+    /**
+     * This function serves as the recursive function whose responsibility
+     * is walking the tree looking for the encrypt me file used to encrypt
+     * the content.
+     *
+     * @param file
+     * @param root
+     * @return
+     */
+    static File findEncryptionKeyFile(const File &file, const File &root);
+
+    /**
+     * This function walks the tree from leaf nodes up towards the root.
+     *
+     * @param file
+     * @param root
+     * @return
+     */
+    static String getEncryptionKey(const File &file, const File &root);
+
 };
 
 
