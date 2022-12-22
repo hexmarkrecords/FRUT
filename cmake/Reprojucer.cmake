@@ -4200,6 +4200,7 @@ function(_FRUT_generate_JuceHeader_header)
       "${project_uid}"
       ${size_limit_in_bytes}
       "${JUCER_BINARYDATA_NAMESPACE}"
+      "${CMAKE_CURRENT_LIST_DIR}"
     )
     foreach(resource_path IN LISTS JUCER_PROJECT_RESOURCES)
       get_filename_component(resource_abs_path "${resource_path}" ABSOLUTE)

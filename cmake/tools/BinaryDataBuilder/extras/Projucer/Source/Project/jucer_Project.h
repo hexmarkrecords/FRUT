@@ -22,10 +22,16 @@ class Project
 {
 
 public:
-  Project(const String& outputDir, const String& uid)
-    : binaryDataFilesOuputDir{File::getCurrentWorkingDirectory().getChildFile(outputDir)}
+  Project(const String &rootDir, const String& outputDir, const String& uid)
+    : projectRoot(rootDir)
+    , binaryDataFilesOutputDir{File::getCurrentWorkingDirectory().getChildFile(outputDir)}
     , projectUID{uid}
   {
+  }
+
+  const File& getProjectRoot() const
+  {
+    return projectRoot;
   }
 
   const String& getProjectUID() const
@@ -37,19 +43,24 @@ public:
   {
     if (index > 0)
     {
-      return binaryDataFilesOuputDir.getChildFile("BinaryData" + String{index + 1}
+      return binaryDataFilesOutputDir.getChildFile("BinaryData" + String{index + 1}
                                                   + ".cpp");
     }
 
-    return binaryDataFilesOuputDir.getChildFile("BinaryData.cpp");
+    return binaryDataFilesOutputDir.getChildFile("BinaryData.cpp");
   }
 
   File getBinaryDataHeaderFile() const
   {
-    return binaryDataFilesOuputDir.getChildFile("BinaryData.h");
+    return binaryDataFilesOutputDir.getChildFile("BinaryData.h");
   }
 
 private:
-  const File binaryDataFilesOuputDir;
+
+  const File projectRoot;
+
+  const File binaryDataFilesOutputDir;
+
   const String projectUID;
+
 };

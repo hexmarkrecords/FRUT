@@ -22,6 +22,7 @@ add_executable(BinaryDataBuilder
   "${CMAKE_CURRENT_LIST_DIR}/extras/Projucer/Source/Utility/jucer_FileHelpers.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/extras/Projucer/Source/Utility/jucer_MiscUtilities.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/modules/juce_gui_extra/juce_gui_extra.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/modules/juce_cryptography/juce_cryptography.cpp"
 )
 
 set_target_properties(BinaryDataBuilder PROPERTIES OUTPUT_NAME BinaryDataBuilder-0.3.1)

@@ -19,6 +19,8 @@
 
 #include "../../../modules/juce_gui_extra/juce_gui_extra.h"
 #include <juce_core/juce_core.h>
+#include <juce_cryptography/juce_cryptography.h>
+
 using namespace juce;
 
 #include "Utility/jucer_CodeHelpers.h"

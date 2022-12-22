@@ -54,10 +54,15 @@
 #include "../jucer_Headers.h"
 #include "jucer_ResourceFile.h"
 
+
+// Constants ===================================================================
+
+constexpr const char *FILENAME_ENCRYPT_ME = ".encrypt-me";
+
 static const char* resourceFileIdentifierString = "JUCER_BINARY_RESOURCE";
 
-
 //==============================================================================
+
 ResourceFile::ResourceFile (Project& p)
     : project (p),
       className ("BinaryData")
@@ -65,6 +70,41 @@ ResourceFile::ResourceFile (Project& p)
 }
 
 //==============================================================================
+
+File ResourceFile::findEncryptionKeyFile (const File &file, const File &root)
+{
+    auto thisDirectory = file.isDirectory() ? file : file.getParentDirectory();
+    auto encryptMeFile = thisDirectory.getChildFile(FILENAME_ENCRYPT_ME);
+
+    if (encryptMeFile.exists())
+    {
+      return encryptMeFile;
+    }
+    else if (thisDirectory == root)
+    {
+      return {};
+    }
+    return findEncryptionKeyFile(thisDirectory.getParentDirectory(), root);
+}
+
+String ResourceFile::getEncryptionKey (const File &file, const File &root)
+{
+    auto encryptMeFile = findEncryptionKeyFile(file, root);
+
+    if (encryptMeFile.exists())
+    {
+      MemoryBlock mb;
+      encryptMeFile.loadFileAsData(mb);
+      return mb.toString();
+    }
+    else
+    {
+      return {};
+    }
+}
+
+//==============================================================================
+
 void ResourceFile::setClassName (const String& name)
 {
     className = name;
@@ -421,6 +461,12 @@ Result ResourceFile::writeHeader<ProjucerVersion::v5_3_1> (MemoryOutputStream& h
             // containsAnyImages = containsAnyImages
             //                      || (ImageFileFormat::findImageFormatForStream (fileStream) != nullptr);
 
+            auto encryptionKey = ResourceFile::getEncryptionKey(file, project.getProjectRoot()).toStdString();
+
+            if (!encryptionKey.empty()) {
+                header << "    // (Encrypted)" << newLine;
+            }
+
             header << "    extern const char*   " << variableName << ";" << newLine;
             header << "    const int            " << variableName << "Size = " << (int) dataSize << ";" << newLine << newLine;
         }
@@ -468,17 +514,28 @@ Result ResourceFile::writeCpp<ProjucerVersion::v5_3_1> (MemoryOutputStream& cpp,
 
         if (fileStream.openedOk())
         {
+            auto encryptionKey = ResourceFile::getEncryptionKey(file, project.getProjectRoot()).toStdString();
+
             // containsAnyImages = containsAnyImages
             //                      || (ImageFileFormat::findImageFormatForStream (fileStream) != nullptr);
 
             auto tempVariable = "temp_binary_data_" + String (i);
 
-            cpp  << newLine << "//================== " << file.getFileName() << " ==================" << newLine
+            cpp  << newLine
+                 << "//================== "  << file.getFileName() << (encryptionKey.empty() ? "" : " (Encrypted)") << " ==================" << newLine
                  << "static const unsigned char " << tempVariable << "[] =" << newLine;
 
             {
                 MemoryBlock data;
                 fileStream.readIntoMemoryBlock (data);
+
+                if (!encryptionKey.empty()) {
+                  juce::BlowFish bf(encryptionKey.data(), static_cast<int>(encryptionKey.size()));
+
+                  // This section encrypts the payload.
+                  bf.encrypt(data);
+                }
+
                 CodeHelpers::writeDataAsCppLiteral (data, cpp, true, true);
             }
 

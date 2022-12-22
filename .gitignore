@@ -1,5 +1,7 @@
+.idea/
 *build/
 *prefix/
 .DS_Store
 /ci/tmp/
 /cmake/bin/
+/cmake-build*
