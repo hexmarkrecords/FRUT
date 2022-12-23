@@ -463,7 +463,18 @@ Result ResourceFile::writeHeader<ProjucerVersion::v5_3_1> (MemoryOutputStream& h
 
             auto encryptionKey = ResourceFile::getEncryptionKey(file, project.getProjectRoot()).toStdString();
 
-            if (!encryptionKey.empty()) {
+            if (!encryptionKey.empty())
+            {
+                MemoryBlock data;
+                fileStream.readIntoMemoryBlock (data);
+
+                juce::BlowFish bf(encryptionKey.data(), static_cast<int>(encryptionKey.size()));
+
+                // This section encrypts the payload.
+                bf.encrypt(data);
+
+                dataSize = static_cast<int64>(data.getSize());
+
                 header << "    // (Encrypted)" << newLine;
             }
 
@@ -529,11 +540,12 @@ Result ResourceFile::writeCpp<ProjucerVersion::v5_3_1> (MemoryOutputStream& cpp,
                 MemoryBlock data;
                 fileStream.readIntoMemoryBlock (data);
 
-                if (!encryptionKey.empty()) {
-                  juce::BlowFish bf(encryptionKey.data(), static_cast<int>(encryptionKey.size()));
+                if (!encryptionKey.empty())
+                {
+                    juce::BlowFish bf(encryptionKey.data(), static_cast<int>(encryptionKey.size()));
 
-                  // This section encrypts the payload.
-                  bf.encrypt(data);
+                    // This section encrypts the payload.
+                    bf.encrypt(data);
                 }
 
                 CodeHelpers::writeDataAsCppLiteral (data, cpp, true, true);
