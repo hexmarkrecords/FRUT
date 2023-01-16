@@ -29,12 +29,13 @@
 /*
   ==============================================================================
 
-   Utility to turn a bunch of binary files into a .cpp file and .h file full of
-   data, so they can be built directly into an executable.
+   Utility to convert a set of binary files into a .cpp file and .h file full of
+   data, so they can be built directly into the executable.
 
-   It also allows for content to be encrypted by placing an .encrypt-me file
-   that includes the secret cipher text so that this binary builder can
-   perform encryption:
+   It also allows for content to be encrypted using blowfish encryption.
+   To signal that a file should be encrypted one must place an .encrypt-me file
+   containing a secret key so that this binary builder can perform binary
+   encryption:
 
     root
     ├── anotherDir
@@ -46,7 +47,7 @@
 
 
    In the example above anotherMessage.txt and deepText.txt would both be
-   encrypted using the cipher text found within the .encrypt-me file.
+   encrypted using the key found within the .encrypt-me file.
    Furthermore, message.txt would remain unencrypted.
 
    Use this code at your own risk! It carries no warranty!
