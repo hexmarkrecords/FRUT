@@ -12,7 +12,7 @@ jobs:
   - job: iOS
     displayName: iOS / Xcode
     pool:
-      vmImage: macOS-12
+      vmImage: macOS-13
     steps:
       - template: ci/azure-pipelines/steps-iOS.yml
         parameters:
@@ -61,7 +61,7 @@ jobs:
   - job: macOS_Make
     displayName: macOS / Unix Makefiles
     pool:
-      vmImage: macOS-11
+      vmImage: macOS-12
     variables:
       cmakeGenerator: "Unix Makefiles"
     steps:
@@ -72,7 +72,7 @@ jobs:
   - job: macOS_Xcode
     displayName: macOS / Xcode
     pool:
-      vmImage: macOS-11
+      vmImage: macOS-12
     steps:
       - template: ci/azure-pipelines/steps-Xcode.yml
         parameters:
