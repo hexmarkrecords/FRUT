@@ -1,4 +1,4 @@
-# Copyright (C) 2016-2023  Alain Martin
+# Copyright (C) 2016-2024  Alain Martin
 # Copyright (C) 2017 Matthieu Talbot
 # Copyright (C) 2018-2019 Scott Wheeler
 # Copyright (C) 2022  Thiébaud Fuchs
@@ -52,7 +52,7 @@ set(Reprojucer_supported_exporters
 set(Reprojucer_supported_exporters_conditions
   "APPLE\;AND\;NOT\;IOS"
   "IOS"
-  "MSVC_VERSION\;GREATER\;1929\;AND\;MSVC_VERSION\;LESS\;1940"
+  "MSVC_VERSION\;GREATER\;1929\;AND\;MSVC_VERSION\;LESS\;1950"
   "MSVC_VERSION\;GREATER\;1919\;AND\;MSVC_VERSION\;LESS\;1930"
   "MSVC_VERSION\;GREATER\;1909\;AND\;MSVC_VERSION\;LESS\;1920"
   "MSVC_VERSION\;EQUAL\;1900"

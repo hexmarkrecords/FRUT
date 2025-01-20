@@ -21,7 +21,7 @@ get_filename_component(AudioPluginHost_jucer_FILE
 
 jucer_project_begin(
   JUCER_FORMAT_VERSION "1"
-  JUCER_VERSION "7.0.4"
+  JUCER_VERSION "7.0.7"
   PROJECT_FILE "${AudioPluginHost_jucer_FILE}"
   PROJECT_ID "NTe0XB0ij"
 )
@@ -35,7 +35,7 @@ jucer_project_settings(
   ADD_USING_NAMESPACE_JUCE_TO_JUCE_HEADER ON
   DISPLAY_THE_JUCE_SPLASH_SCREEN OFF # Required for closed source applications without an Indie or Pro JUCE license
   PROJECT_TYPE "GUI Application"
-  BUNDLE_IDENTIFIER "com.juce.pluginhost"
+  BUNDLE_IDENTIFIER "com.juce.audiopluginhost"
   CXX_LANGUAGE_STANDARD "C++17"
 )
 

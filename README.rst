@@ -77,7 +77,7 @@ FRUT currently contains:
   - ``examples`` and ``extras`` projects from `JUCE 5.4.7`_ (in `generated/JUCE-5.4.7`_)
   - ``examples`` and ``extras`` projects from `JUCE 6.0.5`_ (in `generated/JUCE-6.0.5`_)
   - ``examples`` and ``extras`` projects from `JUCE 6.1.6`_ (in `generated/JUCE-6.1.6`_)
-  - ``examples`` and ``extras`` projects from `JUCE 7.0.4`_ (in `generated/JUCE-7.0.4`_)
+  - ``examples`` and ``extras`` projects from `JUCE 7.0.7`_ (in `generated/JUCE-7.0.7`_)
 
 
 Requirements
@@ -375,10 +375,10 @@ contributors:
       <a href="https://github.com/McMartin/FRUT/issues?q=is%3Aissue+author%3ASuganthanBC" title="Bug reports">🐛</a>
     </td>
     <td>
-      <a href="https://github.com/Riuzakiii"><img src="https://github.com/Riuzakiii.png" width="100"><br />Thiébaud Fuchs</a>
+      <a href="https://github.com/kauwua"><img src="https://github.com/kauwua.png" width="100"><br />Thiébaud Fuchs</a>
       <br />
-      <a href="https://github.com/McMartin/FRUT/issues?q=is%3Aissue+author%3ARiuzakiii" title="Bug reports">🐛</a>
-      <a href="https://github.com/McMartin/FRUT/pulls?q=state%3Amerged+author%3ARiuzakiii" title="Code">💻</a>
+      <a href="https://github.com/McMartin/FRUT/issues?q=is%3Aissue+author%3Akauwua" title="Bug reports">🐛</a>
+      <a href="https://github.com/McMartin/FRUT/pulls?q=state%3Amerged+author%3Akauwua" title="Code">💻</a>
     </td>
   </tr>
   <tr>
@@ -388,8 +388,14 @@ contributors:
       <a href="https://github.com/McMartin/FRUT/issues?q=is%3Aissue+author%3Ahsetlik" title="Bug reports">🐛</a>
     </td>
     <td>
+      <a href="https://github.com/aostrowski"><img src="https://github.com/aostrowski.png" width="100"><br />Adrian Ostrowski</a>
+      <br />
+      <a href="https://github.com/McMartin/FRUT/pulls?q=state%3Amerged+author%3Aaostrowski" title="Code">💻</a>
     </td>
     <td>
+      <a href="https://github.com/nperreau"><img src="https://github.com/nperreau.png" width="100"><br />Naïl Perreau</a>
+      <br />
+      <a href="https://github.com/McMartin/FRUT/issues?q=is%3Aissue+author%3Anperreau" title="Bug reports">🐛</a>
     </td>
     <td>
     </td>
@@ -447,7 +453,7 @@ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 .. _generated/JUCE-5.4.7: generated/JUCE-5.4.7
 .. _generated/JUCE-6.0.5: generated/JUCE-6.0.5
 .. _generated/JUCE-6.1.6: generated/JUCE-6.1.6
-.. _generated/JUCE-7.0.4: generated/JUCE-7.0.4
+.. _generated/JUCE-7.0.7: generated/JUCE-7.0.7
 
 .. _CMake Generators: https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html
 .. _CMake: https://cmake.org
@@ -461,7 +467,7 @@ even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE
 .. _JUCE 5.4.7: https://github.com/juce-framework/JUCE/tree/5.4.7
 .. _JUCE 6.0.5: https://github.com/juce-framework/JUCE/tree/6.0.5
 .. _JUCE 6.1.6: https://github.com/juce-framework/JUCE/tree/6.1.6
-.. _JUCE 7.0.4: https://github.com/juce-framework/JUCE/tree/7.0.4
+.. _JUCE 7.0.7: https://github.com/juce-framework/JUCE/tree/7.0.7
 .. _JUCE: https://github.com/juce-framework/JUCE
 .. _Projucer: https://juce.com/discover/projucer
 .. _all-contributors: https://github.com/all-contributors/all-contributors
