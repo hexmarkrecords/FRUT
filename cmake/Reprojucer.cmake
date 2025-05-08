@@ -2298,18 +2298,20 @@ function(jucer_project_end)
     )
   endif()
 
-  if(NOT current_exporter IN_LIST JUCER_PROJECT_EXPORT_TARGETS)
-    message(FATAL_ERROR "You must call jucer_export_target(\"${current_exporter}\")"
-      " before calling jucer_project_end()."
-    )
-  endif()
-
-  if(NOT JUCER_PROJECT_CONFIGURATIONS)
-    message(FATAL_ERROR "You must call"
-      " jucer_export_target_configuration(\"${current_exporter}\") before calling"
-      " jucer_project_end()."
-    )
-  endif()
+# To Allow backward compatibility with Cubase 11
+#
+#  if(NOT current_exporter IN_LIST JUCER_PROJECT_EXPORT_TARGETS)
+#    message(FATAL_ERROR "You must call jucer_export_target(\"${current_exporter}\")"
+#      " before calling jucer_project_end()."
+#    )
+#  endif()
+#
+#  if(NOT JUCER_PROJECT_CONFIGURATIONS)
+#    message(FATAL_ERROR "You must call"
+#      " jucer_export_target_configuration(\"${current_exporter}\") before calling"
+#      " jucer_project_end()."
+#    )
+#  endif()
 
   if(DEFINED CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_CONFIGURATION_TYPES "${JUCER_PROJECT_CONFIGURATIONS}" PARENT_SCOPE)
